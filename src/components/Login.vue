@@ -29,7 +29,7 @@ export default {
             alert("You need complete fields");
          } else {
             console.log("LOGIN", this.email, this.password)
-            alert("You are now logged in");
+            this.$router.push('profile')
          }
       }
    },
