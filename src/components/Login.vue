@@ -77,4 +77,9 @@ export default {
     padding: 10px;
     width: 100px;
   }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+  }
 </style>

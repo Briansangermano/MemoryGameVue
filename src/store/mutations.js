@@ -1,7 +1,7 @@
 import * as types from "./types";
 
 export default {
-  // Loging
+  // LOGIN
   [types.SUBMIT_LOGING_REQUEST](state) {
     state.fetchingData = true;
     state.error = null;
@@ -19,7 +19,24 @@ export default {
     state.error = error;
   },
 
-  // Get Players
+  // LOGOUT
+  [types.LOGOUT_REQUEST](state) {
+    state.fetchingData = true;
+    state.error = null;
+  },
+
+  [types.LOGOUT_SUCCESS](state) {
+    state.fetchingData = false;
+    state.error = null;
+    state.userLogged = {}
+  },
+
+  [types.LOGOUT_FAILURE](state, { error }) {
+    state.fetchingData = false;
+    state.error = error;
+  },
+
+  // GET PLAYERS
   [types.GET_PLAYERS_REQUEST](state) {
     state.fetchingData = true;
     state.error = null;

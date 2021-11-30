@@ -10,6 +10,15 @@ export default {
     }
   },
 
+  logout({ commit }) {
+    commit(types.LOGOUT_REQUEST);
+    try {
+      commit(types.LOGOUT_SUCCESS)
+    } catch (error) {
+      commit(types.LOGOUT_FAILURE)
+    }
+  },
+
   getPlayersList({ commit }) {
     commit(types.GET_PLAYERS_REQUEST);
 

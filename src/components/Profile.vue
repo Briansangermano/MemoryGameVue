@@ -39,7 +39,9 @@ export default {
 
 <style>
   .title {
+    display: flex;
     font-size: 2em;
+    justify-content: center;
   }
 
   .container-profile {
