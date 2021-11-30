@@ -34,10 +34,6 @@ export default {
   computed: {
     ...mapState(["userLogged"]),
   },
-
-  mounted () {
-    console.log("PASO", this.userLogged)
-  }
 }
 </script>
 

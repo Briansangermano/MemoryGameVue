@@ -8,6 +8,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    fetchingData: true,
+    error: null,
+    playerList: [],
     users: [
       {
         id: 1,

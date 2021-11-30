@@ -26,7 +26,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["users"]),
+    ...mapState(["users", "userLogged"]),
   },
    
   methods: {
@@ -35,17 +35,14 @@ export default {
         if (this.email === "" || this.password === "") {
           alert("You need complete fields");
         } else {
-          if (this.isRegistred().length) {
-            this.submitLoging(this.email);
-            this.$router.push('home');
+          if (this.userLogged) {
+            this.submitLoging({ email: this.email, password: this.password});
+            this.$router.push('profile');
           } else {
             alert("User not is registred");
           }
         }
     },
-    isRegistred() {
-      return this.users.filter(user => (user.password === this.password) && (user.email === this.email));
-    }
   },
 }
 </script>
