@@ -3,8 +3,8 @@
     <div class="title">GAME</div>
     <div>Select a board:</div>
     <div class="container-block">
-      <div @click="pushMoreCards(4)">4x4</div>
-      <div @click="pushMoreCards(6)">6x6</div>
+      <button class="button" @click="pushMoreCard(4)">4x4</button>
+      <button class="button" @click="pushMoreCard(6)">6x6</button>
     </div>
     <div class="container-cards">
       <div v-for="card in cards" :key="card.id" @click="checkCard(card)">
@@ -16,42 +16,22 @@
 </template>
 
 <script>
+import { mapState, mapActions} from "vuex";
+
 export default {
-  data: () => {
-    return {
-      cards: [],
-      selected: []
-    };
+  computed: {
+    ...mapState(["cards"]),
   },
 
   methods: {
+    ...mapActions(['chackedCard', 'pushMoreCards']),
     checkCard(cardSelected) { 
-      // Cambia el estado de la card a Checked
-      cardSelected.checked = !cardSelected.checked;
-      // Filtra las card checkeadas y las pushea a un nuevo array
-      this.cards.filter(c => c === cardSelected && this.selected.push(c))
-      // Valida que el array tenga una longitud par
-      if (this.selected.length % 2 === 0) {
-        const Object1 = this.selected[this.selected.length - 2];
-        const Object2 = this.selected[this.selected.length - 1];
-        // Compara el penultimo objeto del array con el ultimo
-        if (Object1.number === Object2.number) {
-          // Si son iguales filtra y elimina esos objeron de el array cards
-          const newCards = this.cards.filter(card => (card !== Object1) && (card !== Object2) && card)
-          setTimeout(() => {
-            return this.cards = newCards
-          }, 1000);
-        } else {
-          setTimeout(() => {
-            return this.cards.forEach(element => element.checked = false);
-          }, 1000);
-        }
-      }
+      this.chackedCard({ cardSelected });
     },
 
-    pushMoreCards(value) {
+    pushMoreCard(value) {
       if (value === 4) {
-          this.cards = [
+        this.pushMoreCards([
           {id: 0, number: 1, checked: false},
           {id: 1, number: 2, checked: false},
           {id: 2, number: 3, checked: false},
@@ -68,10 +48,10 @@ export default {
           {id: 13, number: 6, checked: false},
           {id: 14, number: 7, checked: false},
           {id: 15, number: 8, checked: false},
-        ]
+        ])
       }
       if (value === 6) {
-          this.cards = [
+        this.pushMoreCards([
           {id: 0, number: 1, checked: false},
           {id: 1, number: 2, checked: false},
           {id: 2, number: 3, checked: false},
@@ -108,7 +88,7 @@ export default {
           {id: 33, number: 18, checked: false},
           {id: 34, number: 17, checked: false},
           {id: 35, number: 18, checked: false},
-        ]
+        ])
       }
     }
   },
@@ -124,15 +104,14 @@ export default {
   .container-block {
     display: flex;
     justify-content: space-between;
-
-    width: 10%;
-    margin-bottom: 30px;
+    width: 25%;
+    margin: 15px 0 30px 0;
   }
 
   .container-cards {
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
+    width: 40%;
     justify-content: center;
     align-content: center;
   }
@@ -154,4 +133,8 @@ export default {
     width: 100px;
     height: 100px;
   } 
+
+  .button {
+    width: 100px;
+  }
 </style>

@@ -26,6 +26,8 @@ export default new Vuex.Store({
       }
     ],
     userLogged: {},
+    cards: [],
+    selected: [],
   },
   mutations,
   actions,

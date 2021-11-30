@@ -29,4 +29,22 @@ export default {
       )
       .catch((error) => commit(types.GET_PLAYERS_FAILURE, { error }));
   },
+
+  chackedCard({ commit }, data) {
+    commit(types.CHECK_CARD_REQUEST);
+    try {
+      commit(types.CHECK_CARD_SUCCESS, data)
+    } catch (error) {
+      commit(types.CHECK_CARD_FAILURE)
+    }
+  },
+
+  pushMoreCards({ commit }, data) {
+    commit(types.PUSH_CARDS_REQUEST);
+    try {
+      commit(types.PUSH_CARDS_SUCCESS, data)
+    } catch (error) {
+      commit(types.PUSH_CARDS_FAILURE)
+    }
+  },
 };

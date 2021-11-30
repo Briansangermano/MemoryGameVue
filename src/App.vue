@@ -13,7 +13,6 @@
         </div>
         <div class="navbar-nav">
           <div v-if="isLogged" @click="logoutClick"><router-link class="nav-item nav-link" to="/">Logout</router-link></div>
-          <div v-else><router-link class="nav-item nav-link active" to="/">Login</router-link></div>
           <a class="navbar-brand"></a>
         </div>
       </div>
