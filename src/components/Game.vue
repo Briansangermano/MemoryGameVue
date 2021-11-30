@@ -6,11 +6,14 @@
       <button class="button" @click="pushMoreCard(4)">4x4</button>
       <button class="button" @click="pushMoreCard(6)">6x6</button>
     </div>
-    <div class="container-cards">
+    <div v-if="!finishedGame" class="container-cards">
       <div v-for="card in cards" :key="card.id" @click="checkCard(card)">
         <button v-if="!card.checked" class="card noChecked">{{card.number}}</button>
         <button disabled v-else class="card checked">{{card.number}}</button>
       </div>
+    </div>
+    <div v-if="finishedGame" class="container-message">
+      <div>CONGRATULATION!</div>
     </div>
   </div>
 </template>
@@ -21,10 +24,15 @@ import { mapState, mapActions} from "vuex";
 export default {
   computed: {
     ...mapState(["cards"]),
+
+    finishedGame() {
+      return this.cards.length === 0
+    }
   },
 
   methods: {
     ...mapActions(['chackedCard', 'pushMoreCards']),
+
     checkCard(cardSelected) { 
       this.chackedCard({ cardSelected });
     },
@@ -104,7 +112,7 @@ export default {
   .container-block {
     display: flex;
     justify-content: space-between;
-    width: 25%;
+    width: 20%;
     margin: 15px 0 30px 0;
   }
 
@@ -136,5 +144,12 @@ export default {
 
   .button {
     width: 100px;
+  }
+
+  .container-message {
+    display: flex;
+    justify-content: center;
+    margin: 100px;
+    font-size: 50px;
   }
 </style>
