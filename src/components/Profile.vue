@@ -1,6 +1,6 @@
 <template>
   <div class="container-profile">
-      <p class="title">PROFILE</p>
+      <p class="title">Profile</p>
       <form class="container">
         <div class="input-container">
           <p>Name:</p>

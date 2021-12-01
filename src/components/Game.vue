@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="title">GAME</div>
+    <div class="title">Game</div>
     <div class="subTitle">Select a board:</div>
     <div class="container-block">
       <button type="button" @click="pushMoreCard(4)" class="btn btn-info number">4x4</button>
@@ -181,7 +181,8 @@ export default {
     width: 100px;
     height: 100px;
     color: cornflowerblue;
-    background-color: cornflowerblue;
+    background-image: url("../assets/naipe.png");
+    background-size: 80%;
   } 
 
   .card.checked {
