@@ -6,6 +6,7 @@
       <button type="button" @click="pushMoreCard(4)" class="btn btn-info number">4x4</button>
       <button type="button" @click="pushMoreCard(6)" class="btn btn-info number">6x6</button>
     </div>
+    <b-progress :class="numberBoard ? 'progress1' : 'progress2'" :value="setValueProgress" show-progress animated></b-progress>
     <div v-if="!finishedGame" :class="numberBoard ? 'container-cards1' : 'container-cards2'">
       <div v-for="card in cards" :key="card.id" @click="checkCard(card)">
         <button v-if="!card.checked" class="card noChecked"></button>
@@ -30,6 +31,12 @@ export default {
 
   computed: {
     ...mapState(["cards"]),
+
+    setValueProgress() {
+      const cardCheckedLength = this.cards.filter(i => i.memorized).length;
+      const cardLength = this.cards.length;
+      return (100 / cardLength) * cardCheckedLength;
+    },
 
     finishedGame() {
       return this.cards.filter(i => i.memorized).length === this.cards.length
@@ -61,6 +68,7 @@ export default {
     ...mapActions(['chackedCard', 'pushMoreCards']),
 
     checkCard(cardSelected) { 
+      // this.setValueProgress()
       this.chackedCard({ cardSelected });
     },
 
@@ -188,5 +196,14 @@ export default {
     justify-content: center;
     margin: 100px;
     font-size: 50px;
+  }
+  .progress1 {
+    width: 33%;
+    margin: 20px 0;
+  }
+
+  .progress2 {
+    width: 50%;
+    margin: 20px 0;
   }
 </style>
