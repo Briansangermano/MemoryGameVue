@@ -72,7 +72,7 @@ export default {
       } else {
         setTimeout(() => {
           return state.cards.forEach(element => (element.memorized !== true) && (element.checked = false));
-        }, 1000);
+        }, 600);
       }
     }
   },
@@ -93,4 +93,21 @@ export default {
     state.fetchingData = false;
     state.error = error;
   },
+
+    // SAVE PROFILE
+    [types.SAVE_PROFILE_REQUEST](state) {
+      state.fetchingData = true;
+      state.error = null;
+    },
+  
+    [types.SAVE_PROFILE_SUCCESS](state, user) {
+      state.fetchingData = false;
+      state.error = null;
+      state.users.forEach(element => (element.id !== user.id) && (element = user));
+    },
+  
+    [types.SAVE_PROFILE_FAILURE](state, { error }) {
+      state.fetchingData = false;
+      state.error = error;
+    },
 };

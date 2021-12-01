@@ -3,12 +3,12 @@
     <div class="title">GAME</div>
     <div>Select a board:</div>
     <div class="container-block">
-      <button class="button" @click="pushMoreCard(4)">4x4</button>
-      <button class="button" @click="pushMoreCard(6)">6x6</button>
+      <button type="button" @click="pushMoreCard(4)" class="btn btn-info number">4x4</button>
+      <button type="button" @click="pushMoreCard(6)" class="btn btn-info number">6x6</button>
     </div>
     <div v-if="!finishedGame" :class="numberBoard ? 'container-cards1' : 'container-cards2'">
       <div v-for="card in cards" :key="card.id" @click="checkCard(card)">
-        <button v-if="!card.checked" class="card noChecked">{{card.number}}</button>
+        <button v-if="!card.checked" class="card noChecked"></button>
         <button disabled v-else class="card checked">{{card.number}}</button>
       </div>
     </div>
@@ -142,7 +142,7 @@ export default {
     display: flex;
     justify-content: space-between;
     width: 20%;
-    margin: 15px 0 30px 0;
+    margin-bottom: 30px;
   }
 
   .container-cards1 {
@@ -179,7 +179,7 @@ export default {
     height: 100px;
   } 
 
-  .button {
+  .btn.number {
     width: 100px;
   }
 

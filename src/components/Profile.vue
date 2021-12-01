@@ -1,10 +1,10 @@
 <template>
   <div class="container-profile">
       <p class="title">PROFILE</p>
-      <div class="container">
+      <form class="container">
         <div class="input-container">
           <p>Name:</p>
-          <input v-model="userLogged.name" type="text" class="form-control">
+          <input @input="someHandler" v-model="userLogged.name" type="text" class="form-control">
         </div>
         <div class="input-container">
           <p>Email:</p>
@@ -14,12 +14,22 @@
           <p>Password:</p>
           <input v-model="userLogged.password" type="text" class="form-control">
         </div>
-      </div>
+        <button :disabled="disabledButton" type="button" @click="saveUser" class="btn btn-primary">Save Profile</button>
+      </form>
+      
+      <!-- MODAl -->
+      <b-modal ref="my-modal" hide-footer>
+        <div class="d-block text-center">
+          <p>Was successfully saved</p>
+          <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-button>
+        </div>
+      </b-modal>
+
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   
@@ -28,11 +38,29 @@ export default {
       email: "",
       password: "",
       name: "",
+      disabledButton: true,
     };
   },
 
   computed: {
-    ...mapState(["userLogged"]),
+    ...mapState(["userLogged", "users"]),
+  },
+
+  methods: {
+    someHandler() {
+      this.disabledButton = false;
+    },
+    ...mapActions(['saveProfile']),
+    showModal() {
+      this.$refs['my-modal'].show();
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide();
+    },
+    saveUser() {
+        this.saveProfile(this.userLogged);
+        this.showModal()
+    },
   },
 }
 </script>
@@ -66,4 +94,10 @@ export default {
     padding: 10px;
     width: 250px;
   }
+
+  .btn {
+    margin-top: 30px;
+  }
+
+  .close {display: none;}
 </style>

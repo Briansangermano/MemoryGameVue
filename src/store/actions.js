@@ -37,4 +37,13 @@ export default {
       commit(types.PUSH_CARDS_FAILURE)
     }
   },
+
+  saveProfile({ commit }, user) {
+    commit(types.SAVE_PROFILE_REQUEST);
+    try {
+      commit(types.SAVE_PROFILE_SUCCESS, user)
+    } catch (error) {
+      commit(types.SAVE_PROFILE_FAILURE)
+    }
+  },
 };

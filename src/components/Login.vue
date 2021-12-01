@@ -6,7 +6,7 @@
           <input v-model="email" type="email" class="form-control" placeholder="Email" required>
           <input v-model="password" type="password" class="form-control" placeholder="Password" required>
           <b-spinner v-if="fetchingData" class="spinner"></b-spinner>
-          <input v-else type="submit" class="btn-primary" @click="submit">
+          <button v-else type="button" @click="submit" class="btn btn-primary">Submit</button>
           <p class="error" v-if="error">Error on the login</p>
       </div>
     </div>
