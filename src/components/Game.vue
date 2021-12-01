@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title">GAME</div>
-    <div>Select a board:</div>
+    <div class="subTitle">Select a board:</div>
     <div class="container-block">
       <button type="button" @click="pushMoreCard(4)" class="btn btn-info number">4x4</button>
       <button type="button" @click="pushMoreCard(6)" class="btn btn-info number">6x6</button>
@@ -144,13 +144,18 @@ export default {
   .title {
     margin: 20px 0 10px;
     font-size: 2em;
+    color: white;
+  }
+
+  .subTitle {
+    color: white;
   }
 
   .container-block {
     display: flex;
     justify-content: space-between;
     width: 20%;
-    margin-bottom: 30px;
+    margin: 20px 0 30px;
   }
 
   .container-cards1 {
@@ -197,6 +202,7 @@ export default {
     margin: 100px;
     font-size: 50px;
   }
+
   .progress1 {
     width: 33%;
     margin: 20px 0;

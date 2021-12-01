@@ -76,11 +76,13 @@ export default {
     margin-top: 10px;
     padding: 10px;
     width: 100px;
+    border: 1px solid white;
   }
 
   h1 {
     display: flex;
     justify-content: center;
+    color: white;
   }
 
   .error {

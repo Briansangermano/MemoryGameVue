@@ -5,7 +5,8 @@
         <div v-if="fetchingData">
           <b-spinner class="spinner"></b-spinner>
         </div>
-        <table v-else>
+        <b-table class="table" v-else striped hover :items="playerList" :fields="fields"></b-table>
+        <!-- <table v-else>
           <tr>
             <th>Name</th>
             <th>User Name</th>
@@ -16,7 +17,7 @@
             <td>{{player.username}}</td>
             <td>{{player.email}}</td>
           </tr>
-        </table>
+        </table> -->
       </div>
   </div>
 </template>
@@ -25,6 +26,12 @@
   import { mapState, mapActions } from "vuex";
 
   export default {
+    data() {
+      return {
+        fields: ['name', 'username', 'email', 'website'],
+      }
+    },
+
     methods: {
       ...mapActions(["getPlayersList"]),
     },
@@ -87,5 +94,9 @@
     margin: 140px;
     width: 4rem;
     height: 4rem;
+  }
+
+  .table {
+    background-color: white;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="App">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <div class="navbar-nav">
         <router-link v-if="isLogged" class="nav-item nav-link" to="/profile">Profile</router-link>
@@ -55,6 +55,10 @@ export default {
     margin-top: 60px;
   }
 
+  body {
+    background-image: url("./assets/gradient.jpg");
+  }
+
   .collapse {
     display: flex;
     justify-content: space-between;
@@ -72,5 +76,6 @@ export default {
 
   .nav-item {
     margin-right: 10px;
+    font-weight: 700;
   }
 </style>

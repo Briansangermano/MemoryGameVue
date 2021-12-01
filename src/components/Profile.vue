@@ -95,8 +95,13 @@ export default {
     width: 250px;
   }
 
-  .btn {
+  .btn.btn-primary {
     margin-top: 30px;
+    border: 1px solid white;
+  }
+
+  p {
+    color: white;
   }
 
   .close {display: none;}
