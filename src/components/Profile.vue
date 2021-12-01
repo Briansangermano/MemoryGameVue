@@ -45,7 +45,7 @@ export default {
   }
 
   .container-profile {
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .container {

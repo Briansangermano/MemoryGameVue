@@ -62,24 +62,25 @@ export default {
   [types.CHECK_CARD_SUCCESS](state, { cardSelected }) {
     state.fetchingData = false;
     state.error = null;
-    // Cambia el estado de la card a Checked
+    // Change the state of the card to Checked
     cardSelected.checked = !cardSelected.checked;
-    // Filtra las card checkeadas y las pushea a un nuevo array
+    // Filter the checked cards and push them to a new array
     state.cards.filter(c => c === cardSelected && state.selected.push(c))
-    // Valida que el array tenga una longitud par
+    // Validate that the array has an even length
     if (state.selected.length % 2 === 0) {
       const Object1 = state.selected[state.selected.length - 2];
       const Object2 = state.selected[state.selected.length - 1];
-      // Compara el penultimo objeto del array con el ultimo
+      // Compare the penultimate object in the array with the last
       if (Object1.number === Object2.number) {
-        // Si son iguales filtra y elimina esos objeron de el array cards
-        const newCards = state.cards.filter(card => (card !== Object1) && (card !== Object2) && card)
+        // If they are the same, set these elements as memorized
         setTimeout(() => {
-          return state.cards = newCards
+          return state.cards.forEach(element => {
+            if (element === Object1 || element === Object2) return element.memorized = true
+          });
         }, 1000);
       } else {
         setTimeout(() => {
-          return state.cards.forEach(element => element.checked = false);
+          return state.cards.forEach(element => (element.memorized !== true) && (element.checked = false));
         }, 1000);
       }
     }
