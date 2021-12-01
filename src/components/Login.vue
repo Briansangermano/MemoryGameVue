@@ -5,7 +5,9 @@
       <div class="form-group">
           <input v-model="email" type="email" class="form-control" placeholder="Email" required>
           <input v-model="password" type="password" class="form-control" placeholder="Password" required>
-          <input type="submit" class="btn-primary" @click="submit">
+          <b-spinner v-if="fetchingData" class="spinner"></b-spinner>
+          <input v-else type="submit" class="btn-primary" @click="submit">
+          <p class="error" v-if="error">Error on the login</p>
       </div>
     </div>
   </div>
@@ -26,7 +28,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["users", "userLogged"]),
+    ...mapState(["users", "userLogged", "fetchingData", "error"]),
   },
    
   methods: {
@@ -35,11 +37,9 @@ export default {
         if (this.email === "" || this.password === "") {
           alert("You need complete fields");
         } else {
+          this.submitLoging({ email: this.email, password: this.password});
           if (this.userLogged) {
-            this.submitLoging({ email: this.email, password: this.password});
             this.$router.push('profile');
-          } else {
-            alert("User not is registred");
           }
         }
     },
@@ -81,5 +81,11 @@ export default {
   h1 {
     display: flex;
     justify-content: center;
+  }
+
+  .error {
+    color: crimson;
+    margin-top: 20px;
+    font-size: 0.90em;
   }
 </style>

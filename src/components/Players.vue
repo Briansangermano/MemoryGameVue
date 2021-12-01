@@ -2,7 +2,10 @@
   <div class="container-profile">
       <p class="title">Players</p>
       <div class="container">
-        <table>
+        <div v-if="fetchingData">
+          <b-spinner class="spinner"></b-spinner>
+        </div>
+        <table v-else>
           <tr>
             <th>Name</th>
             <th>User Name</th>
@@ -27,7 +30,7 @@
     },
 
     computed: {
-      ...mapState(["playerList"]),
+      ...mapState(["playerList", "fetchingData"]),
     },
 
     mounted () {
@@ -78,5 +81,11 @@
 
   tr:nth-child(even) {
     background-color: #dddddd;
+  }
+
+  .spinner {
+    margin: 140px;
+    width: 4rem;
+    height: 4rem;
   }
 </style>

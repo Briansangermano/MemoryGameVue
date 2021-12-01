@@ -2,21 +2,17 @@ import * as types from "./types";
 
 export default {
   // LOGIN
-  [types.SUBMIT_LOGING_REQUEST](state) {
-    state.fetchingData = true;
-    state.error = null;
-  },
-
-  [types.SUBMIT_LOGING_SUCCESS](state, userData) {
+  [types.SUBMIT_LOGING](state, userData) {
     state.fetchingData = false;
     state.error = null;
     const userLogged = state.users.find((user) => (user.email === userData.email) && (user.password === userData.password));
-    state.userLogged = userLogged
-  },
-
-  [types.SUBMIT_LOGING_FAILURE](state, { error }) {
-    state.fetchingData = false;
-    state.error = error;
+    if (userLogged) {
+      state.userLogged = userLogged
+      state.error = null;
+    } else {
+      state.userLogged = userLogged
+      state.error = true;
+    }
   },
 
   // LOGOUT
@@ -54,12 +50,7 @@ export default {
   },
 
   // CHECK CARD
-  [types.CHECK_CARD_REQUEST](state) {
-    state.fetchingData = true;
-    state.error = null;
-  },
-
-  [types.CHECK_CARD_SUCCESS](state, { cardSelected }) {
+  [types.CHECK_CARD](state, { cardSelected }) {
     state.fetchingData = false;
     state.error = null;
     // Change the state of the card to Checked
@@ -84,11 +75,6 @@ export default {
         }, 1000);
       }
     }
-  },
-
-  [types.CHECK_CARD_FAILURE](state, { error }) {
-    state.fetchingData = false;
-    state.error = error;
   },
 
   // PUSH MORE CARDS

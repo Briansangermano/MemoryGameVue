@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/signIn",
     name: "Login",
     component: Login,
   },
@@ -27,6 +27,10 @@ const routes = [
     path: "/game",
     name: "Game",
     component: Game,
+  },
+  {
+    path: '*',
+    redirect: '/signIn'
   }
 ];
 

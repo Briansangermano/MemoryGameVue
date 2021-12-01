@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    fetchingData: true,
+    fetchingData: false,
     error: null,
     playerList: [],
     users: [

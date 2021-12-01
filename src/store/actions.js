@@ -2,12 +2,7 @@ import * as types from "./types";
 
 export default {
   submitLoging({ commit }, userData) {
-    commit(types.SUBMIT_LOGING_REQUEST);
-    try {
-      commit(types.SUBMIT_LOGING_SUCCESS, userData)
-    } catch (error) {
-      commit(types.SUBMIT_LOGING_FAILURE)
-    }
+    commit(types.SUBMIT_LOGING, userData)
   },
 
   logout({ commit }) {
@@ -31,12 +26,7 @@ export default {
   },
 
   chackedCard({ commit }, data) {
-    commit(types.CHECK_CARD_REQUEST);
-    try {
-      commit(types.CHECK_CARD_SUCCESS, data)
-    } catch (error) {
-      commit(types.CHECK_CARD_FAILURE)
-    }
+    commit(types.CHECK_CARD, data)
   },
 
   pushMoreCards({ commit }, data) {

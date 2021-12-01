@@ -6,7 +6,7 @@
       <button class="button" @click="pushMoreCard(4)">4x4</button>
       <button class="button" @click="pushMoreCard(6)">6x6</button>
     </div>
-    <div v-if="!finishedGame" class="container-cards">
+    <div v-if="!finishedGame" :class="numberBoard ? 'container-cards1' : 'container-cards2'">
       <div v-for="card in cards" :key="card.id" @click="checkCard(card)">
         <button v-if="!card.checked" class="card noChecked">{{card.number}}</button>
         <button disabled v-else class="card checked">{{card.number}}</button>
@@ -22,6 +22,12 @@
 import { mapState, mapActions} from "vuex";
 
 export default {
+  data: () => {
+    return {
+      numberBoard: true,
+    };
+  },
+
   computed: {
     ...mapState(["cards"]),
 
@@ -60,6 +66,7 @@ export default {
 
     pushMoreCard(value) {
       if (value === 4) {
+        this.numberBoard = true;
         this.pushMoreCards([
           {id: 0, number: 1, checked: false, memorized: false},
           {id: 1, number: 2, checked: false, memorized: false},
@@ -80,6 +87,7 @@ export default {
         ])
       }
       if (value === 6) {
+        this.numberBoard = false;
         this.pushMoreCards([
           {id: 0, number: 1, checked: false, memorized: false},
           {id: 1, number: 2, checked: false, memorized: false},
@@ -126,7 +134,7 @@ export default {
 
 <style>
   .title {
-    margin: 50px 0;
+    margin: 20px 0 10px;
     font-size: 2em;
   }
 
@@ -137,10 +145,18 @@ export default {
     margin: 15px 0 30px 0;
   }
 
-  .container-cards {
+  .container-cards1 {
     display: flex;
     flex-wrap: wrap;
     width: 40%;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .container-cards2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 59%;
     justify-content: center;
     align-content: center;
   }
