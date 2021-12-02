@@ -20,7 +20,7 @@
       <!-- MODAl -->
       <b-modal ref="my-modal" hide-footer>
         <div class="d-block text-center">
-          <p>Was successfully saved</p>
+          <p class="p-modal">Was successfully saved</p>
           <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close</b-button>
         </div>
       </b-modal>
@@ -102,6 +102,10 @@ export default {
 
   p {
     color: white;
+  }
+
+  .p-modal {
+    color: black;
   }
 
   .close {display: none;}

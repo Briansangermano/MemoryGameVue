@@ -44,7 +44,7 @@ export default {
   },
 
   mounted () {
-    this.pushMoreCards([
+    this.pushMoreCards(this.mixCards([
       {id: 0, number: 1, checked: false, memorized: false},
       {id: 1, number: 2, checked: false, memorized: false},
       {id: 2, number: 3, checked: false, memorized: false},
@@ -61,7 +61,7 @@ export default {
       {id: 13, number: 6, checked: false, memorized: false},
       {id: 14, number: 7, checked: false, memorized: false},
       {id: 15, number: 8, checked: false, memorized: false},
-    ])
+    ]))
   },
 
   methods: {
@@ -72,10 +72,23 @@ export default {
       this.chackedCard({ cardSelected });
     },
 
+    mixCards(arr) {
+      var i,
+          j,
+          temp;
+      for (i = arr.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          temp = arr[i];
+          arr[i] = arr[j];
+          arr[j] = temp;
+      }
+      return arr;    
+    },
+
     pushMoreCard(value) {
       if (value === 4) {
         this.numberBoard = true;
-        this.pushMoreCards([
+        this.pushMoreCards(this.mixCards([
           {id: 0, number: 1, checked: false, memorized: false},
           {id: 1, number: 2, checked: false, memorized: false},
           {id: 2, number: 3, checked: false, memorized: false},
@@ -92,11 +105,11 @@ export default {
           {id: 13, number: 6, checked: false, memorized: false},
           {id: 14, number: 7, checked: false, memorized: false},
           {id: 15, number: 8, checked: false, memorized: false},
-        ])
+        ]))
       }
       if (value === 6) {
         this.numberBoard = false;
-        this.pushMoreCards([
+        this.pushMoreCards(this.mixCards([
           {id: 0, number: 1, checked: false, memorized: false},
           {id: 1, number: 2, checked: false, memorized: false},
           {id: 2, number: 3, checked: false, memorized: false},
@@ -133,7 +146,7 @@ export default {
           {id: 33, number: 18, checked: false, memorized: false},
           {id: 34, number: 17, checked: false, memorized: false},
           {id: 35, number: 18, checked: false, memorized: false},
-        ])
+        ]))
       }
     }
   },
