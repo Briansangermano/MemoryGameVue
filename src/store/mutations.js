@@ -60,7 +60,10 @@ export default {
           });
         }, 1000);
       } else {
+        console.log("PASO");
+        state.cards.forEach(element => element.disabled = true);
         setTimeout(() => {
+          state.cards.forEach(element => element.disabled = false);
           return state.cards.forEach(element => (element.memorized !== true) && (element.checked = false));
         }, 600);
       }
