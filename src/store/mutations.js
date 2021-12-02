@@ -16,20 +16,10 @@ export default {
   },
 
   // LOGOUT
-  [types.LOGOUT_REQUEST](state) {
-    state.fetchingData = true;
-    state.error = null;
-  },
-
-  [types.LOGOUT_SUCCESS](state) {
+  [types.LOGOUT](state) {
     state.fetchingData = false;
     state.error = null;
     state.userLogged = {}
-  },
-
-  [types.LOGOUT_FAILURE](state, { error }) {
-    state.fetchingData = false;
-    state.error = error;
   },
 
   // GET PLAYERS
@@ -78,36 +68,16 @@ export default {
   },
 
   // PUSH MORE CARDS
-  [types.PUSH_CARDS_REQUEST](state) {
-    state.fetchingData = true;
-    state.error = null;
-  },
-
-  [types.PUSH_CARDS_SUCCESS](state, data) {
+  [types.PUSH_CARDS](state, data) {
     state.fetchingData = false;
     state.error = null;
     state.cards = [...data];
   },
 
-  [types.PUSH_CARDS_FAILURE](state, { error }) {
+  // SAVE PROFILE
+  [types.SAVE_PROFILE](state, user) {
     state.fetchingData = false;
-    state.error = error;
+    state.error = null;
+    state.users.forEach(element => (element.id !== user.id) && (element = user));
   },
-
-    // SAVE PROFILE
-    [types.SAVE_PROFILE_REQUEST](state) {
-      state.fetchingData = true;
-      state.error = null;
-    },
-  
-    [types.SAVE_PROFILE_SUCCESS](state, user) {
-      state.fetchingData = false;
-      state.error = null;
-      state.users.forEach(element => (element.id !== user.id) && (element = user));
-    },
-  
-    [types.SAVE_PROFILE_FAILURE](state, { error }) {
-      state.fetchingData = false;
-      state.error = error;
-    },
 };

@@ -14,7 +14,7 @@
       </div>
     </div>
     <div v-if="finishedGame" class="container-message">
-      <div>CONGRATULATION!</div>
+      <div class="message">CONGRATULATION!</div>
     </div>
   </div>
 </template>
@@ -65,11 +65,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(['chackedCard', 'pushMoreCards']),
+    ...mapActions(['checkedCard', 'pushMoreCards']),
 
     checkCard(cardSelected) { 
       // this.setValueProgress()
-      this.chackedCard({ cardSelected });
+      this.checkedCard({ cardSelected });
     },
 
     mixCards(arr) {
@@ -225,5 +225,10 @@ export default {
   .progress2 {
     width: 50%;
     margin: 20px 0;
+  }
+
+  .message {
+    color: chartreuse;
+    font-weight: 900;
   }
 </style>

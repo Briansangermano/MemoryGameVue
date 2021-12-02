@@ -8,11 +8,11 @@
         </div>
         <div class="input-container">
           <p>Email:</p>
-          <input v-model="userLogged.email" type="text" class="form-control">
+          <input @input="someHandler" v-model="userLogged.email" type="text" class="form-control">
         </div>
         <div class="input-container">
           <p>Password:</p>
-          <input v-model="userLogged.password" type="text" class="form-control">
+          <input @input="someHandler" v-model="userLogged.password" type="text" class="form-control">
         </div>
         <button :disabled="disabledButton" type="button" @click="saveUser" class="btn btn-primary">Save Profile</button>
       </form>
